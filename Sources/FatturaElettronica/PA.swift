@@ -7,6 +7,15 @@ import Foundation
 // MARK: - Entità in comune
 
 public struct Indirizzo: Codable {
+    public init(indirizzo: String, numeroCivico: String?, cap: Int, comune: String, provincia: String?, nazione: String) {
+        self.indirizzo = indirizzo
+        self.numeroCivico = numeroCivico
+        self.cap = cap
+        self.comune = comune
+        self.provincia = provincia
+        self.nazione = nazione
+    }
+
     public let indirizzo: String
     public let numeroCivico: String?
     public let cap: Int
@@ -25,6 +34,14 @@ public struct Indirizzo: Codable {
 }
 
 public struct Anagrafica: Codable {
+    public init(denominazione: String?, nome: String?, cognome: String?, codEORI: String?, titolo: String?) {
+        self.denominazione = denominazione
+        self.nome = nome
+        self.cognome = cognome
+        self.codEORI = codEORI
+        self.titolo = titolo
+    }
+
     public let denominazione: String?
     public let nome: String?
     public let cognome: String?
@@ -48,6 +65,11 @@ public struct Anagrafica: Codable {
 }
 
 public struct IDFiscale: Codable {
+    public init(idPaese: String, idCodice: String) {
+        self.idPaese = idPaese
+        self.idCodice = idCodice
+    }
+
     public let idPaese: String
     public let idCodice: String
     
@@ -86,7 +108,11 @@ public enum Natura: String, Codable {
 
 // MARK: - <FatturaElettronica>
 public struct FatturaElettronica: Codable {
-    
+    public init(fatturaElettronicaHeader: FatturaElettronicaHeader, fatturaElettronicaBody: FatturaElettronicaBody) {
+        self.fatturaElettronicaHeader = fatturaElettronicaHeader
+        self.fatturaElettronicaBody = fatturaElettronicaBody
+    }
+
     public let fatturaElettronicaHeader: FatturaElettronicaHeader
     public let fatturaElettronicaBody: FatturaElettronicaBody
     
@@ -99,6 +125,15 @@ public struct FatturaElettronica: Codable {
 
 // MARK: - 1 <FatturaElettronicaHeader>
 public struct FatturaElettronicaHeader: Codable {
+    public init(datiTrasmissione: DatiTrasmissione, cedentePrestatore: CedentePrestatore, rappresentanteFiscale: RappresentanteFiscale?, cessionarioCommittente: CessionarioCommittente, terzoIntermediarioOSoggettoEmittente: TerzoIntermediarioSoggettoEmittente?, soggettoEmittente: SoggettoEmittente?) {
+        self.datiTrasmissione = datiTrasmissione
+        self.cedentePrestatore = cedentePrestatore
+        self.rappresentanteFiscale = rappresentanteFiscale
+        self.cessionarioCommittente = cessionarioCommittente
+        self.terzoIntermediarioOSoggettoEmittente = terzoIntermediarioOSoggettoEmittente
+        self.soggettoEmittente = soggettoEmittente
+    }
+
     public let datiTrasmissione: DatiTrasmissione
     public let cedentePrestatore: CedentePrestatore
     public let rappresentanteFiscale: RappresentanteFiscale?
@@ -118,6 +153,15 @@ public struct FatturaElettronicaHeader: Codable {
 
 // MARK: - 1.1 <DatiTrasmissione>
 public struct DatiTrasmissione: Codable {
+    public init(idTrasmittente: IDFiscale, progressivoInvio: String, formatoTrasmissione: FormatoTrasmissione, codiceDestinatario: String, contattiTrasmittente: ContattiTrasmittente?, pecDestinatario: String?) {
+        self.idTrasmittente = idTrasmittente
+        self.progressivoInvio = progressivoInvio
+        self.formatoTrasmissione = formatoTrasmissione
+        self.codiceDestinatario = codiceDestinatario
+        self.contattiTrasmittente = contattiTrasmittente
+        self.pecDestinatario = pecDestinatario
+    }
+
     public let idTrasmittente: IDFiscale
     public let progressivoInvio: String
     public let formatoTrasmissione: FormatoTrasmissione
@@ -141,6 +185,11 @@ public enum FormatoTrasmissione: String, Codable {
 }
 
 public struct ContattiTrasmittente: Codable {
+    public init(telefono: String?, email: String?) {
+        self.telefono = telefono
+        self.email = email
+    }
+
     public let telefono: String?
     public let email: String?
     
@@ -152,6 +201,15 @@ public struct ContattiTrasmittente: Codable {
 
 // MARK: - 1.2 <CedentePrestatore>
 public struct CedentePrestatore: Codable {
+    public init(datiAnagrafici: CedentePrestatoreDatiAnagrafici, sede: Indirizzo, stabileOrganizzazione: Indirizzo?, iscrizioneREA: IscrizioneREA?, contatti: Contatti?, riferimentoAmministrazione: String?) {
+        self.datiAnagrafici = datiAnagrafici
+        self.sede = sede
+        self.stabileOrganizzazione = stabileOrganizzazione
+        self.iscrizioneREA = iscrizioneREA
+        self.contatti = contatti
+        self.riferimentoAmministrazione = riferimentoAmministrazione
+    }
+
     public let datiAnagrafici: CedentePrestatoreDatiAnagrafici
     public let sede: Indirizzo
     public let stabileOrganizzazione: Indirizzo?
@@ -171,6 +229,17 @@ public struct CedentePrestatore: Codable {
 }
 
 public struct CedentePrestatoreDatiAnagrafici: Codable {
+    public init(idFiscaleIva: IDFiscale, anagrafica: Anagrafica, regimeFiscale: RegimeFiscale, codiceFiscale: String?, alboProfessionale: String?, provinciaAlbo: String?, numeroIscrizioneAlbo: String?, dataIscrizioAlbo: String?) {
+        self.idFiscaleIva = idFiscaleIva
+        self.anagrafica = anagrafica
+        self.regimeFiscale = regimeFiscale
+        self.codiceFiscale = codiceFiscale
+        self.alboProfessionale = alboProfessionale
+        self.provinciaAlbo = provinciaAlbo
+        self.numeroIscrizioneAlbo = numeroIscrizioneAlbo
+        self.dataIscrizioAlbo = dataIscrizioAlbo
+    }
+
     public let idFiscaleIva: IDFiscale
     public let anagrafica: Anagrafica
     public let regimeFiscale: RegimeFiscale
@@ -194,6 +263,14 @@ public struct CedentePrestatoreDatiAnagrafici: Codable {
 }
 
 public struct IscrizioneREA: Codable {
+    public init(ufficio: String, numeroREA: String, capitaleSociale: Double?, socioUnico: SocioUnico?, statoLiquidazione: StatoLiquidazione) {
+        self.ufficio = ufficio
+        self.numeroREA = numeroREA
+        self.capitaleSociale = capitaleSociale
+        self.socioUnico = socioUnico
+        self.statoLiquidazione = statoLiquidazione
+    }
+
     public let ufficio : String
     public let numeroREA: String
     public let capitaleSociale: Double?
@@ -220,6 +297,12 @@ public enum SocioUnico: String, Codable {
 }
 
 public struct Contatti: Codable {
+    public init(telefono: String?, fax: String?, email: String?) {
+        self.telefono = telefono
+        self.fax = fax
+        self.email = email
+    }
+
     public let telefono : String?
     public let fax: String?
     public let email: String?
@@ -256,6 +339,10 @@ public enum RegimeFiscale: String, Codable {
 
 // MARK: - 1.3 <RappresentateFiscale>
 public struct RappresentanteFiscale: Codable {
+    public init(datiAnagrafici: DatiAnagraficiRappresentante) {
+        self.datiAnagrafici = datiAnagrafici
+    }
+
     public let datiAnagrafici: DatiAnagraficiRappresentante
     
     enum CodingKeys: String, CodingKey{
@@ -264,6 +351,12 @@ public struct RappresentanteFiscale: Codable {
 }
 
 public struct DatiAnagraficiRappresentante: Codable {
+    public init(idFiscaleIva: IDFiscale, codiceFiscale: String?, anagrafica: Anagrafica) {
+        self.idFiscaleIva = idFiscaleIva
+        self.codiceFiscale = codiceFiscale
+        self.anagrafica = anagrafica
+    }
+
     public let idFiscaleIva: IDFiscale
     public let codiceFiscale: String?
     public let anagrafica: Anagrafica
@@ -277,6 +370,13 @@ public struct DatiAnagraficiRappresentante: Codable {
 
 // MARK: - 1.4 <CessionarioCommittente>
 public struct CessionarioCommittente: Codable {
+    public init(datiAnagrafici: CessionarioCommittenteDatiAnagrafici, sede: Indirizzo, stabileOrganizzazione: Indirizzo?, rappresentanteFiscale: CessionarioCommittenteRappresentanteFiscale?) {
+        self.datiAnagrafici = datiAnagrafici
+        self.sede = sede
+        self.stabileOrganizzazione = stabileOrganizzazione
+        self.rappresentanteFiscale = rappresentanteFiscale
+    }
+
     public let datiAnagrafici: CessionarioCommittenteDatiAnagrafici
     public let sede: Indirizzo
     public let stabileOrganizzazione: Indirizzo?
@@ -291,6 +391,12 @@ public struct CessionarioCommittente: Codable {
 }
 
 public struct CessionarioCommittenteDatiAnagrafici: Codable {
+    public init(idFiscaleIva: IDFiscale?, codiceFiscale: String?, anagrafica: Anagrafica) {
+        self.idFiscaleIva = idFiscaleIva
+        self.codiceFiscale = codiceFiscale
+        self.anagrafica = anagrafica
+    }
+
     public let idFiscaleIva: IDFiscale?
     public let codiceFiscale: String?
     public let anagrafica: Anagrafica
@@ -303,6 +409,12 @@ public struct CessionarioCommittenteDatiAnagrafici: Codable {
 }
 
 public struct CessionarioCommittenteRappresentanteFiscale: Codable {
+    public init(idFiscaleIva: IDFiscale, codiceFiscale: String, anagrafica: Anagrafica) {
+        self.idFiscaleIva = idFiscaleIva
+        self.codiceFiscale = codiceFiscale
+        self.anagrafica = anagrafica
+    }
+
     public let idFiscaleIva: IDFiscale
     public let codiceFiscale: String
     public let anagrafica: Anagrafica
@@ -316,6 +428,10 @@ public struct CessionarioCommittenteRappresentanteFiscale: Codable {
 
 // MARK: - 1.5 <TerzoIntermediarioOSoggettoEmittente>
 public struct TerzoIntermediarioSoggettoEmittente: Codable {
+    public init(datiAnagrafici: DatiAnagraficiTerzoIntermediario) {
+        self.datiAnagrafici = datiAnagrafici
+    }
+
     public let datiAnagrafici: DatiAnagraficiTerzoIntermediario
     
     enum CodingKeys: String, CodingKey{
@@ -324,6 +440,12 @@ public struct TerzoIntermediarioSoggettoEmittente: Codable {
 }
 
 public struct DatiAnagraficiTerzoIntermediario: Codable {
+    public init(idFiscaleIva: IDFiscale?, codiceFiscale: String?, anagrafica: Anagrafica) {
+        self.idFiscaleIva = idFiscaleIva
+        self.codiceFiscale = codiceFiscale
+        self.anagrafica = anagrafica
+    }
+
     public let idFiscaleIva: IDFiscale?
     public let codiceFiscale: String?
     public let anagrafica: Anagrafica
@@ -343,7 +465,13 @@ public enum SoggettoEmittente: String, Codable {
 
 // MARK: - 2 <FatturaElettronicaBody>
 public struct FatturaElettronicaBody: Codable {
-    
+    public init(datiGenerali: DatiGenerali, datiBeniServizi: DatiBeniServizi, datiVeicoli: DatiVeicoli?, allegati: [Allegati]?) {
+        self.datiGenerali = datiGenerali
+        self.datiBeniServizi = datiBeniServizi
+        self.datiVeicoli = datiVeicoli
+        self.allegati = allegati
+    }
+
     public let datiGenerali: DatiGenerali
     public let datiBeniServizi: DatiBeniServizi
     public let datiVeicoli: DatiVeicoli?
@@ -361,6 +489,19 @@ public struct FatturaElettronicaBody: Codable {
 
 // MARK: - 2.1 <DatiGenerali>
 public struct DatiGenerali: Codable {
+    public init(datiGeneraliDocumento: DatiGeneraliDocumento, datiOrdineAcquisto: [DatiDocumentiCorrelati]?, datiContratto: [DatiDocumentiCorrelati]?, datiConvenzione: [DatiDocumentiCorrelati]?, datiRicezione: [DatiDocumentiCorrelati]?, datiFattureCollegate: [DatiDocumentiCorrelati]?, datiSal: [DatiSAL]?, datiDdt: [DatiDDT]?, datiTrasporto: DatiTrasporto?, fatturaPrincipale: FatturaPrincipale?) {
+        self.datiGeneraliDocumento = datiGeneraliDocumento
+        self.datiOrdineAcquisto = datiOrdineAcquisto
+        self.datiContratto = datiContratto
+        self.datiConvenzione = datiConvenzione
+        self.datiRicezione = datiRicezione
+        self.datiFattureCollegate = datiFattureCollegate
+        self.datiSal = datiSal
+        self.datiDdt = datiDdt
+        self.datiTrasporto = datiTrasporto
+        self.fatturaPrincipale = fatturaPrincipale
+    }
+
     public let datiGeneraliDocumento: DatiGeneraliDocumento
     public let datiOrdineAcquisto: [DatiDocumentiCorrelati]?
     public let datiContratto: [DatiDocumentiCorrelati]?
@@ -387,6 +528,21 @@ public struct DatiGenerali: Codable {
 }
 
 public struct DatiGeneraliDocumento: Codable {
+    public init(tipoDocumento: TipoDocumento, divisa: String, data: Date, numero: String, datiRitenuta: [DatiRitenuta]?, datiBollo: DatiBollo?, datiCassaPrevidenziale: [DatiCassaPrevidenziale]?, scontoMaggiorazione: [ScontoMaggiorazione]?, importoTotaleDocumento: Double?, arrotondamento: Double?, causale: [String]?, art73: String?) {
+        self.tipoDocumento = tipoDocumento
+        self.divisa = divisa
+        self.data = data
+        self.numero = numero
+        self.datiRitenuta = datiRitenuta
+        self.datiBollo = datiBollo
+        self.datiCassaPrevidenziale = datiCassaPrevidenziale
+        self.scontoMaggiorazione = scontoMaggiorazione
+        self.importoTotaleDocumento = importoTotaleDocumento
+        self.arrotondamento = arrotondamento
+        self.causale = causale
+        self.art73 = art73
+    }
+
     public let tipoDocumento: TipoDocumento
     public let divisa: String
     public let data: Date
@@ -437,6 +593,13 @@ public enum TipoDocumento: String, Codable {
 }
 
 public struct DatiRitenuta: Codable {
+    public init(tipoRitenuta: TipoRitenuta, importoRitenuta: Double, aliquotaRitenuta: Double, causalePagamento: CausalePagamento) {
+        self.tipoRitenuta = tipoRitenuta
+        self.importoRitenuta = importoRitenuta
+        self.aliquotaRitenuta = aliquotaRitenuta
+        self.causalePagamento = causalePagamento
+    }
+
     public let tipoRitenuta: TipoRitenuta
     public let importoRitenuta: Double
     public let aliquotaRitenuta: Double
@@ -490,6 +653,11 @@ public enum CausalePagamento: String, Codable {
 }
 
 public struct DatiBollo: Codable {
+    public init(bolloVirtuale: String, importoBollo: Double?) {
+        self.bolloVirtuale = bolloVirtuale
+        self.importoBollo = importoBollo
+    }
+
     public let bolloVirtuale: String
     public let importoBollo: Double?
     
@@ -500,6 +668,17 @@ public struct DatiBollo: Codable {
 }
 
 public struct DatiCassaPrevidenziale: Codable {
+    public init(tipoCassa: TipoCassa, alCassa: Double, importoContributoCassa: Double, imponibileCassa: Double?, aliquotaIVA: Double, ritenuta: Bool?, natura: Natura?, riferimentoAmministrazione: String?) {
+        self.tipoCassa = tipoCassa
+        self.alCassa = alCassa
+        self.importoContributoCassa = importoContributoCassa
+        self.imponibileCassa = imponibileCassa
+        self.aliquotaIVA = aliquotaIVA
+        self.ritenuta = ritenuta
+        self.natura = natura
+        self.riferimentoAmministrazione = riferimentoAmministrazione
+    }
+
     public let tipoCassa: TipoCassa
     public let alCassa: Double
     public let importoContributoCassa: Double
@@ -546,6 +725,12 @@ public enum TipoCassa: String, Codable {
 }
 
 public struct ScontoMaggiorazione: Codable {
+    public init(tipo: TipoScontoMaggiorazione, percentuale: Double?, importo: Double?) {
+        self.tipo = tipo
+        self.percentuale = percentuale
+        self.importo = importo
+    }
+
     public let tipo: TipoScontoMaggiorazione
     public let percentuale: Double?
     public let importo: Double?
@@ -563,6 +748,16 @@ public enum TipoScontoMaggiorazione: String, Codable {
 }
 
 public struct DatiDocumentiCorrelati: Codable {
+    public init(riferimentoNumeroLinea: [Int]?, idDocumento: String, numItem: String?, codiceCup: String?, codiceCig: String?, data: Date?, codiceCommessaConvenzione: String?) {
+        self.riferimentoNumeroLinea = riferimentoNumeroLinea
+        self.idDocumento = idDocumento
+        self.numItem = numItem
+        self.codiceCup = codiceCup
+        self.codiceCig = codiceCig
+        self.data = data
+        self.codiceCommessaConvenzione = codiceCommessaConvenzione
+    }
+
     public let riferimentoNumeroLinea: [Int]?
     public let idDocumento: String
     public let numItem: String?
@@ -583,6 +778,10 @@ public struct DatiDocumentiCorrelati: Codable {
 }
 
 public struct DatiSAL: Codable {
+    public init(riferimentoFase: Int) {
+        self.riferimentoFase = riferimentoFase
+    }
+
     public let riferimentoFase: Int
     
     enum CodingKeys: String, CodingKey{
@@ -591,6 +790,12 @@ public struct DatiSAL: Codable {
 }
 
 public struct DatiDDT: Codable {
+    public init(numeroDdt: String, dataDdt: Date, riferimentoNumeroLinea: [Int]?) {
+        self.numeroDdt = numeroDdt
+        self.dataDdt = dataDdt
+        self.riferimentoNumeroLinea = riferimentoNumeroLinea
+    }
+
     public let numeroDdt: String
     public let dataDdt: Date
     public let riferimentoNumeroLinea: [Int]?
@@ -603,6 +808,22 @@ public struct DatiDDT: Codable {
 }
 
 public struct DatiTrasporto: Codable {
+    public init(datiAnagraficiVettore: DatiAnagraficiVettore?, mezzoTrasporto: String?, causaleTrasporto: String?, numeroColli: Int?, descrizione: String?, unitaMisuraPeso: String?, pesoLordo: Double?, pesoNetto: Double?, dataOraRitiro: Date?, dataInizioTrasporto: Date?, tipoResa: String?, indirizzoResa: Indirizzo?, dataOraConsegna: Date?) {
+        self.datiAnagraficiVettore = datiAnagraficiVettore
+        self.mezzoTrasporto = mezzoTrasporto
+        self.causaleTrasporto = causaleTrasporto
+        self.numeroColli = numeroColli
+        self.descrizione = descrizione
+        self.unitaMisuraPeso = unitaMisuraPeso
+        self.pesoLordo = pesoLordo
+        self.pesoNetto = pesoNetto
+        self.dataOraRitiro = dataOraRitiro
+        self.dataInizioTrasporto = dataInizioTrasporto
+        self.tipoResa = tipoResa
+        self.indirizzoResa = indirizzoResa
+        self.dataOraConsegna = dataOraConsegna
+    }
+
     public let datiAnagraficiVettore: DatiAnagraficiVettore?
     public let mezzoTrasporto: String?
     public let causaleTrasporto: String?
@@ -636,6 +857,13 @@ public struct DatiTrasporto: Codable {
 }
 
 public struct DatiAnagraficiVettore: Codable {
+    public init(idFiscaleIva: IDFiscale, codiceFiscale: String?, anagrafica: Anagrafica, numeroLicenzaGuida: String?) {
+        self.idFiscaleIva = idFiscaleIva
+        self.codiceFiscale = codiceFiscale
+        self.anagrafica = anagrafica
+        self.numeroLicenzaGuida = numeroLicenzaGuida
+    }
+
     public let idFiscaleIva: IDFiscale
     public let codiceFiscale: String?
     public let anagrafica: Anagrafica
@@ -650,6 +878,11 @@ public struct DatiAnagraficiVettore: Codable {
 }
 
 public struct FatturaPrincipale: Codable {
+    public init(numeroFatturaPrincipale: String, dataFatturaPrincipale: Date) {
+        self.numeroFatturaPrincipale = numeroFatturaPrincipale
+        self.dataFatturaPrincipale = dataFatturaPrincipale
+    }
+
     public let numeroFatturaPrincipale: String
     public let dataFatturaPrincipale: Date
     
@@ -661,6 +894,11 @@ public struct FatturaPrincipale: Codable {
 
 // MARK: - 2.2 <DatiBeniServizi>
 public struct DatiBeniServizi: Codable {
+    public init(dettaglioLinee: [DettaglioLinee], datiRiepilogo: [DatiRiepilogo]) {
+        self.dettaglioLinee = dettaglioLinee
+        self.datiRiepilogo = datiRiepilogo
+    }
+
     public let dettaglioLinee: [DettaglioLinee]
     public let datiRiepilogo: [DatiRiepilogo]
     
@@ -671,6 +909,25 @@ public struct DatiBeniServizi: Codable {
 }
 
 public struct DettaglioLinee: Codable {
+    public init(codiceArticolo: [CodiceArticolo]?, numeroLinea: Int, tipoCessionePrestazione: TipoCessionePrestazione?, descrizione: String, quantita: Double?, unitaMisura: String?, dataInizioPeriodo: Date?, dataFinePeriodo: Date?, prezzoUnitario: Double, scontoMaggiorazione: [ScontoMaggiorazione]?, prezzoTotale: Double, aliquotaIva: Double, ritenuta: Bool?, natura: Natura?, riferimentoAmministrazione: String?, altriDatiGestionali: [AltriDatiGestionali]?) {
+        self.codiceArticolo = codiceArticolo
+        self.numeroLinea = numeroLinea
+        self.tipoCessionePrestazione = tipoCessionePrestazione
+        self.descrizione = descrizione
+        self.quantita = quantita
+        self.unitaMisura = unitaMisura
+        self.dataInizioPeriodo = dataInizioPeriodo
+        self.dataFinePeriodo = dataFinePeriodo
+        self.prezzoUnitario = prezzoUnitario
+        self.scontoMaggiorazione = scontoMaggiorazione
+        self.prezzoTotale = prezzoTotale
+        self.aliquotaIva = aliquotaIva
+        self.ritenuta = ritenuta
+        self.natura = natura
+        self.riferimentoAmministrazione = riferimentoAmministrazione
+        self.altriDatiGestionali = altriDatiGestionali
+    }
+
     public let codiceArticolo: [CodiceArticolo]?
     public let numeroLinea: Int
     public let tipoCessionePrestazione: TipoCessionePrestazione?
@@ -709,6 +966,17 @@ public struct DettaglioLinee: Codable {
 }
 
 public struct DatiRiepilogo: Codable {
+    public init(aliquotaIva: Double, natura: Natura?, speseAccessorie: Double?, arrotondamento: Double?, imponibileImporto: Double, imposta: Double, esigibilitaIva: EsigibilitaIVA?, riferimentoNormativo: String?) {
+        self.aliquotaIva = aliquotaIva
+        self.natura = natura
+        self.speseAccessorie = speseAccessorie
+        self.arrotondamento = arrotondamento
+        self.imponibileImporto = imponibileImporto
+        self.imposta = imposta
+        self.esigibilitaIva = esigibilitaIva
+        self.riferimentoNormativo = riferimentoNormativo
+    }
+
     public let aliquotaIva: Double
     public let natura: Natura?
     public let speseAccessorie: Double?
@@ -744,6 +1012,11 @@ public enum TipoCessionePrestazione: String, Codable {
 }
 
 public struct CodiceArticolo: Codable {
+    public init(codiceTipo: String, codiceValore: String) {
+        self.codiceTipo = codiceTipo
+        self.codiceValore = codiceValore
+    }
+
     public let codiceTipo: String
     public let codiceValore: String
     
@@ -754,6 +1027,13 @@ public struct CodiceArticolo: Codable {
 }
 
 public struct AltriDatiGestionali: Codable {
+    public init(tipoDato: String, riferimentoTesto: String?, riferimentoNumero: Double?, riferimentoData: Date?) {
+        self.tipoDato = tipoDato
+        self.riferimentoTesto = riferimentoTesto
+        self.riferimentoNumero = riferimentoNumero
+        self.riferimentoData = riferimentoData
+    }
+
     public let tipoDato: String
     public let riferimentoTesto: String?
     public let riferimentoNumero: Double?
@@ -769,6 +1049,11 @@ public struct AltriDatiGestionali: Codable {
 
 // MARK: - 2.3 <DatiVeicoli>
 public struct DatiVeicoli: Codable {
+    public init(data: Date, totalePercorso: String) {
+        self.data = data
+        self.totalePercorso = totalePercorso
+    }
+
     public let data: Date
     public let totalePercorso: String
     
@@ -780,7 +1065,11 @@ public struct DatiVeicoli: Codable {
 
 // MARK: - 2.4 <DatiPagamento>
 public struct DatiPagamento: Codable {
-    
+    public init(dettaglioPagamento: [DettaglioPagamento], condizioniPagamento: CondizioniPagamento) {
+        self.dettaglioPagamento = dettaglioPagamento
+        self.condizioniPagamento = condizioniPagamento
+    }
+
     public let dettaglioPagamento: [DettaglioPagamento]
     public let condizioniPagamento: CondizioniPagamento
     
@@ -791,6 +1080,30 @@ public struct DatiPagamento: Codable {
 }
 
 public struct DettaglioPagamento: Codable {
+    public init(beneficiario: String?, modalitaPagamento: ModalitaPagamento, dataRiferimentoTerminiPagamento: Date?, giorniTerminiPagamento: Int?, dataScadenzaPagamento: Date?, importoPagamento: Double, codUfficioPostale: String?, cognomeQuietanzante: String?, nomeQuietanzante: String?, cfQuietanzante: String?, titoloQuietanzante: String?, istitutoFinanziario: String?, iban: String?, abi: Int?, cab: Int?, bic: String?, scontoPagamentoAnticipato: Double?, dataLimitePagamentoAnticipato: Date?, penalitaPagamentiRitardati: Double?, dataDecorrenzaPenale: Date?, codicePagamento: String?) {
+        self.beneficiario = beneficiario
+        self.modalitaPagamento = modalitaPagamento
+        self.dataRiferimentoTerminiPagamento = dataRiferimentoTerminiPagamento
+        self.giorniTerminiPagamento = giorniTerminiPagamento
+        self.dataScadenzaPagamento = dataScadenzaPagamento
+        self.importoPagamento = importoPagamento
+        self.codUfficioPostale = codUfficioPostale
+        self.cognomeQuietanzante = cognomeQuietanzante
+        self.nomeQuietanzante = nomeQuietanzante
+        self.cfQuietanzante = cfQuietanzante
+        self.titoloQuietanzante = titoloQuietanzante
+        self.istitutoFinanziario = istitutoFinanziario
+        self.iban = iban
+        self.abi = abi
+        self.cab = cab
+        self.bic = bic
+        self.scontoPagamentoAnticipato = scontoPagamentoAnticipato
+        self.dataLimitePagamentoAnticipato = dataLimitePagamentoAnticipato
+        self.penalitaPagamentiRitardati = penalitaPagamentiRitardati
+        self.dataDecorrenzaPenale = dataDecorrenzaPenale
+        self.codicePagamento = codicePagamento
+    }
+
     public let beneficiario: String?
     public let modalitaPagamento: ModalitaPagamento
     public let dataRiferimentoTerminiPagamento: Date?
@@ -876,6 +1189,15 @@ public struct Allegati: Codable {
     public let algoritmoCompressione: String?
     public let formatoAttachment: String?
     public let descrizioneAttachment: String?
+
+    public init(nomeAttachment: String, algoritmoCompressione: String?, formatoAttachment: String?, descrizioneAttachment: String?, attachment: String) {
+        self.nomeAttachment = nomeAttachment
+        self.algoritmoCompressione = algoritmoCompressione
+        self.formatoAttachment = formatoAttachment
+        self.descrizioneAttachment = descrizioneAttachment
+        self.attachment = attachment
+    }
+
     public let attachment: String
     
     enum CodingKeys: String, CodingKey{
