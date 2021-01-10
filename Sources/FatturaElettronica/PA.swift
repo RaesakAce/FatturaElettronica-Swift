@@ -465,10 +465,11 @@ public enum SoggettoEmittente: String, Codable {
 
 // MARK: - 2 <FatturaElettronicaBody>
 public struct FatturaElettronicaBody: Codable {
-    public init(datiGenerali: DatiGenerali, datiBeniServizi: DatiBeniServizi, datiVeicoli: DatiVeicoli?, allegati: [Allegati]?) {
+    public init(datiGenerali: DatiGenerali, datiBeniServizi: DatiBeniServizi, datiVeicoli: DatiVeicoli?, datiPagamento: [DatiPagamento] = [DatiPagamento]() , allegati: [Allegati]?) {
         self.datiGenerali = datiGenerali
         self.datiBeniServizi = datiBeniServizi
         self.datiVeicoli = datiVeicoli
+        self.datiPagamento = datiPagamento
         self.allegati = allegati
     }
 
